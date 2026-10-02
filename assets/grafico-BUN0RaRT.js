@@ -1,0 +1,1 @@
+var e=[1,2,5,10,20,25,50,100,200,250,500];function t(t){let n=Math.max(0,t),r=e.find(e=>n/e<=4)??Math.ceil(n/4e3)*1e3,i=Math.max(r*2,Math.ceil((n+.5)/r)*r);return Array.from({length:i/r+1},(e,t)=>t*r)}export{t};

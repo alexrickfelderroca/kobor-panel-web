@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Panel de control de Kobor: lo que hacen los bots, en directo." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1613" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-title" content="Kobor" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Panel Kobor</title>
+    <script>
+      // Pinta el tema elegido (claro / oscuro / sistema) antes de que cargue la app,
+      // para que no haya un destello blanco. Misma clave que src/lib/tema.ts.
+      ;(function () {
+        var preferencia = 'sistema'
+        try {
+          preferencia = localStorage.getItem('kobor-tema') || 'sistema'
+        } catch (e) {}
+        var oscuro = preferencia === 'oscuro'
+        if (preferencia !== 'claro' && preferencia !== 'oscuro') {
+          try {
+            oscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+          } catch (e) {}
+        }
+        var raiz = document.documentElement
+        if (oscuro) raiz.classList.add('dark')
+        raiz.style.colorScheme = oscuro ? 'dark' : 'light'
+        // Si se ha elegido un tema a mano, la barra del navegador lo sigue (las dos etiquetas).
+        var metas = document.querySelectorAll('meta[name="theme-color"]')
+        for (var i = 0; i < metas.length; i++) metas[i].setAttribute('content', oscuro ? '#0d1613' : '#f7f5f0')
+      })()
+    </script>
+    <script type="module" crossorigin src="./assets/index-Bryt8Um3.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-hePW80VL.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-D3deiPkU.js">
+    <link rel="modulepreload" crossorigin href="./assets/comunes-BM_tJGlu.js">
+    <link rel="modulepreload" crossorigin href="./assets/supabase-Cn3p9w3r.js">
+    <link rel="modulepreload" crossorigin href="./assets/libs-e-4tRgXL.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-KyawZ1w0.css">
+  <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js" defer></script></head>
+  <body>
+    <div id="root"></div>
+    <noscript>Para usar el Panel Kobor hay que activar JavaScript en el navegador.</noscript>
+  </body>
+</html>
